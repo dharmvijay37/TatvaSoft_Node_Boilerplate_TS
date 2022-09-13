@@ -8,7 +8,7 @@ export class LoginRepository {
       // Write computing operations here
       return AuthService.login(req,res);
     } catch (err) {
-      return { message: 'Something went wrong' };
+      return err;
     }
   }
 }

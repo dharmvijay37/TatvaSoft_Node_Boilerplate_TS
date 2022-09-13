@@ -9,7 +9,7 @@ export class RegisterRepository {
       // Write computing operations here
       return AuthService.register(req,res);
     } catch (err) {
-      return { message: 'Something went wrong' };
+      return err;
     }
   }
 

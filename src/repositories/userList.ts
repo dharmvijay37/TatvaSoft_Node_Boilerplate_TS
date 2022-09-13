@@ -9,7 +9,7 @@ export class UserListRepository {
       // Write computing operations here
       return UserService.getUserList(req,res);
     } catch (err) {
-      return { message: 'Something went wrong' };
+      return err;
     }
   }
 
