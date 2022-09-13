@@ -4,6 +4,7 @@ import environmentConfig from '../constants/environment.constant';
 import * as bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { AuthFailureError, NotFoundError, BadRequestError, InternalError } from '../utils/error.handler';
+import { SuccessResponse } from '../utils/successResponse.handler';
 export class AuthService {
   public static async login(req: Request, res: Response) {
     try {
@@ -26,11 +27,7 @@ export class AuthService {
             role: users.role,
             token: 'Bearer ' + token,
           };
-          return res.status(200).json({
-            message: 'Signin successfully',
-            status: 200,
-            response_data: data,
-          });
+          return res.status(200).json(new SuccessResponse(true, 'Signin successfully', 200, data));
         }
       }
     } catch (error: any) {
@@ -54,7 +51,7 @@ export class AuthService {
         if (!newuser) {
           throw new InternalError('500', 'Internal Error');
         } else {
-          return res.status(200).json({ message: 'New user registered successfully' });
+          return res.status(200).json(new SuccessResponse(true, 'New user registered successfully', 200));
         }
       }
     } catch (error: any) {
